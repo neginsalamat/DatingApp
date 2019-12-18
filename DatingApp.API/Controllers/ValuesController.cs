@@ -26,6 +26,7 @@ namespace DatingApp.API.Controllers
         //     //throw new Exception("Test Exception");
         //     return new string[] { "value1", "value3" };
         // }
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Getvalues()
         {
