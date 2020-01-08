@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../_services/auth.service";
 import { AlertifyService } from "../_services/alertify.service";
 import { Router } from "@angular/router";
+import { LowerCasePipe } from "@angular/common";
 
 @Component({
   selector: "app-nav",
@@ -10,6 +11,7 @@ import { Router } from "@angular/router";
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  photoUrl: string;
 
   constructor(
     private authService: AuthService,
@@ -17,7 +19,11 @@ export class NavComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.currentPhotoUrl.subscribe(
+      photoUrl => (this.photoUrl = photoUrl)
+    );
+  }
 
   login() {
     console.log("inside login method");
@@ -44,6 +50,9 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     //console.log("logged out");
     this.alertify.message("logged out");
     this.router.navigate(["./home"]);
