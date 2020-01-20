@@ -6,7 +6,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   BsDropdownModule,
   TabsModule,
-  BsDatepickerModule
+  BsDatepickerModule,
+  PaginationModule,
+  ButtonsModule
 } from "ngx-bootstrap";
 import { RouterModule } from "@angular/router";
 import { JwtModule } from "@auth0/angular-jwt";
@@ -65,8 +67,10 @@ export class CustomHammerConfig extends platformBrowser.HammerGestureConfig {
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
     NgxGalleryModule,
     FileUploadModule,
     JwtModule.forRoot({
